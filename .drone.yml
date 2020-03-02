@@ -1,0 +1,13 @@
+---
+kind: pipeline
+name: trigger dockerhub build
+
+platform:
+  arch: amd64
+
+steps:
+- name: call webhook
+  pull: if-not-exists
+  image: curlimages/curl
+  commands:
+  - curl -X "$$dockerhub_endpoint"
