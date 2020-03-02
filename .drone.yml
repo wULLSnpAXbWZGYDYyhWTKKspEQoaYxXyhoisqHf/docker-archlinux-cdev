@@ -9,5 +9,8 @@ steps:
 - name: call webhook
   pull: if-not-exists
   image: curlimages/curl
+  environment:
+    ENDPOINT:
+      from_secret: dockerhub_endpoint
   commands:
-  - curl -X POST "$$dockerhub_endpoint"
+  - curl -X POST $ENDPOINT
