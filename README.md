@@ -1,6 +1,9 @@
-# docker-archlinux-cdev [![Build Status](https://drone.dotya.ml/api/badges/wanderer/docker-archlinux-cdev/status.svg?ref=refs/heads/master)](https://drone.dotya.ml/wanderer/docker-archlinux-cdev)
+# docker-archlinux-cdev
+
+[![Build Status](https://drone.dotya.ml/api/badges/wanderer/docker-archlinux-cdev/status.svg?ref=refs/heads/master)](https://drone.dotya.ml/wanderer/docker-archlinux-cdev)
 
 This repository provides the Dockerfile to create a Docker image used for light C development (some goodies included).
+The image is rebuilt approximately every hour to ensure it always has the latest packages.
 
 ## What you get
 * updated Arch Linux [base image](https://hub.docker.com/_/archlinux)
@@ -12,5 +15,3 @@ This repository provides the Dockerfile to create a Docker image used for light 
 
 ## Purpose
 * light C development upon fresh package base
-
-Enjoy.
