@@ -28,11 +28,12 @@ clone:
   disable: true
 
 trigger:
+  branch:
+    - master
+    - "release/*"
   event:
-    - cron
-  cron:
-    - hourly
-    - hourly-build
+    - push
+    - tag
   status:
     - success
     - failure
