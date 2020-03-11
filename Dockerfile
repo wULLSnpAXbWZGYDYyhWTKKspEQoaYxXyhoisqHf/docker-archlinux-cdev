@@ -1,7 +1,5 @@
 FROM archlinux/base
 
-ENV container=docker
-
 ARG BUILD_DATE
 ARG VCS_REF
 
