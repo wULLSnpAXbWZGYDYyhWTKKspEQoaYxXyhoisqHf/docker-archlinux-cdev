@@ -1,4 +1,4 @@
-FROM archlinux/base
+FROM archlinux/base:latest
 
 ARG BUILD_DATE
 ARG VCS_REF
