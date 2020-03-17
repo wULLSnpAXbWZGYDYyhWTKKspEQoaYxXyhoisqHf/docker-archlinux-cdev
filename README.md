@@ -7,7 +7,7 @@ This repository provides the Dockerfile to create a Docker image used for light 
 The image is rebuilt approximately every hour to ensure it always has the latest packages.
 
 ## What you get
-* updated Arch Linux [base image](https://hub.docker.com/r/archlinux/base)
+* updated Arch Linux [base image](https://hub.docker.com/_/archlinux)
 * gcc
 * make
 * cmake
