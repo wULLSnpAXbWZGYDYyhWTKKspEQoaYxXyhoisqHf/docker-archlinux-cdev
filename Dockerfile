@@ -8,6 +8,6 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.license=GPL-3.0
 
-RUN pacman -Sy --noconfirm --needed gcc cmake make git valgrind \
+RUN pacman -Syu --noconfirm --needed gcc cmake make git valgrind \
     && pacman -Scc \
     && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/*
