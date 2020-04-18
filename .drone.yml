@@ -51,7 +51,6 @@ steps:
       webhook_token:
         from_secret: discord_webhook_token
 
-
 ---
 kind: pipeline
 name: notifications-cronbuild
@@ -64,12 +63,12 @@ clone:
   disable: true
 
 trigger:
+  branch:
+    - master
   event:
-  - cron
+    - cron
   cron:
-  - hourly
-  - hourly-build
-  - daily
+    - hourly-build
   status:
     - success
     - failure
