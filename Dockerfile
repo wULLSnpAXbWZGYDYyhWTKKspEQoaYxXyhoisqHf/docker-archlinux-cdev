@@ -10,7 +10,7 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 WORKDIR /tmp/
 RUN pacman -Syu --noconfirm --needed gcc cmake make git valgrind \
-    && pacman --noconfirm -R $(pacman -Qdtq)
+    && pacman --noconfirm -R $(pacman -Qdtq) || true
 RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     && rm -rv /usr/share/info/* \
     && rm -rv /usr/share/man/* \
