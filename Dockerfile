@@ -16,5 +16,5 @@ RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     rm -rv /usr/share/doc/* ;rm -rv /usr/share/zoneinfo/* ;rm -rv /usr/share/i18n/*; \
     find /. -name "*~" -type f -delete; \
     find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete; \
-    rm -rv /tmp/*
+    rm -rfv /tmp/* || true
 WORKDIR /
