@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM immawanderer/archlinux:latest
 
 ARG BUILD_DATE
 ARG VCS_REF
