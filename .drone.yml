@@ -3,17 +3,11 @@ kind: pipeline
 name: dockerhub-build-trigger
 
 platform:
+  os: linux
   arch: amd64
 
 clone:
   disable: true
-
-trigger:
-  branch:
-  - master
-  ref:
-    exclude:
-    - ref/tags/**
 
 steps:
 - name: call webhook
@@ -25,9 +19,14 @@ steps:
   commands:
   - curl -s -X POST $ENDPOINT
   when:
+    branch:
+    - master
     event:
     - push
     - cron
+    ref:
+      exclude:
+      - ref/tags/**
 
 
 ---
