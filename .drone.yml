@@ -8,6 +8,18 @@ platform:
 clone:
   disable: true
 
+trigger:
+  branch:
+  - master
+  event:
+  - push
+  - cron
+  cron:
+  - hourly-build
+  ref:
+    exclude:
+    - ref/tags/**
+
 steps:
 - name: call webhook
   pull: always
@@ -35,7 +47,6 @@ trigger:
     - master
   event:
     - push
-    - tag
   status:
     - success
     - failure
