@@ -11,9 +11,6 @@ clone:
 trigger:
   branch:
   - master
-  event:
-  - push
-  - cron
   ref:
     exclude:
     - ref/tags/**
@@ -27,6 +24,10 @@ steps:
       from_secret: dockerhub_endpoint
   commands:
   - curl -s -X POST $ENDPOINT
+  when:
+    event:
+    - push
+    - cron
 
 
 ---
