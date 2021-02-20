@@ -8,7 +8,6 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.license=GPL-3.0
 
-WORKDIR /tmp/
 RUN pacman -Syu --noconfirm --ignore glibc --needed gcc cmake make git valgrind
 RUN pacman --noconfirm -R $(pacman -Qdtq) || true
 RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
@@ -17,4 +16,3 @@ RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     find /. -name "*~" -type f -delete; \
     find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete; \
     rm -rfv /tmp/* || true
-WORKDIR /
