@@ -13,7 +13,7 @@ RUN pacman -Syu --noconfirm --ignore glibc --needed gcc cmake make git valgrind
 RUN pacman --noconfirm -R $(pacman -Qdtq) || true
 RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     && rm -rv /usr/share/info/* ;rm -rv /usr/share/man/* ; \
-    rm -rv /usr/share/doc/* ;rm -rv /usr/share/zoneinfo/* ;rm -rv /usr/share/i18n/*; \
+    rm -rv /usr/share/doc/* ;rm -r /usr/share/zoneinfo/* ;rm -rv /usr/share/i18n/*; \
     find /. -name "*~" -type f -delete; \
     find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete; \
     rm -rfv /tmp/* || true
