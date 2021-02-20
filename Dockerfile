@@ -9,8 +9,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.license=GPL-3.0
 
 WORKDIR /tmp/
-RUN pacman -Syu --noconfirm --ignore glibc --needed gcc cmake make git valgrind \
-    && pacman --noconfirm -R $(pacman -Qdtq) || true
+RUN pacman -Syu --noconfirm --ignore glibc --needed gcc cmake make git valgrind
+RUN pacman --noconfirm -R $(pacman -Qdtq) || true
 RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
     && rm -rv /usr/share/info/* ;rm -rv /usr/share/man/* ; \
     rm -rv /usr/share/doc/* ;rm -rv /usr/share/zoneinfo/* ;rm -rv /usr/share/i18n/*; \
