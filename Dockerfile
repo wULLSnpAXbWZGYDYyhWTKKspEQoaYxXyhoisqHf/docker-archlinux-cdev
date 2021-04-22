@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.2
-FROM immawanderer/archlinux:latest
+FROM immawanderer/archlinux:linux-amd64
 
 ARG BUILD_DATE
 ARG VCS_REF
