@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.2
 FROM immawanderer/archlinux:latest
 
 ARG BUILD_DATE
@@ -8,11 +9,12 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.license=GPL-3.0
 
-RUN pacman -Syu --noconfirm --ignore glibc --needed gcc cmake make git valgrind
-RUN pacman --noconfirm -R $(pacman -Qdtq) || true
-RUN pacman -Scc && rm -rfv /var/cache/pacman/* /var/lib/pacman/sync/* \
-    && rm -rv /usr/share/info/* ;rm -rv /usr/share/man/* ; \
-    rm -rv /usr/share/doc/* ;rm -r /usr/share/zoneinfo/* ;rm -rv /usr/share/i18n/*; \
+RUN pacman --version
+
+RUN pacman -Syu --noconfirm --needed gcc cmake make git valgrind
+RUN pacman --noconfirm -Rn "$(pacman -Qdtq)" || true
+RUN pacman -Scc && rm -rf /var/cache/pacman/* /var/lib/pacman/sync/* \
+    && rm -rf /usr/share/info/* ;rm -rf /usr/share/man/* ; \
+    rm -rf /usr/share/doc/* ;rm -rf /usr/share/zoneinfo/* ;rm -rf /usr/share/i18n/*; \
     find /. -name "*~" -type f -delete; \
-    find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete; \
-    rm -rfv /tmp/* || true
+    find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete;

@@ -1,53 +1,64 @@
 ---
 kind: pipeline
 type: docker
-name: dockerhub-build-trigger
+name: testing
 
 platform:
   os: linux
   arch: amd64
 
-clone:
-  disable: true
-
 steps:
-- name: call webhook
+- name: hadolint
   pull: always
-  image: curlimages/curl:latest
-  environment:
-    ENDPOINT:
-      from_secret: dockerhub_endpoint
+  image: hadolint/hadolint:v1.23.0-8-gb01c5a9-alpine
   commands:
-  - curl -s -X POST $ENDPOINT
+  - hadolint --version
+  - hadolint Dockerfile
   when:
-    branch:
-    - master
-    event:
-    - push
-    - cron
     ref:
-      exclude:
-      - ref/tags/**
+    - refs/heads/master
+    - "refs/heads/feature-**"
+    - "refs/pull/**"
+    - "refs/tags/**"
+    event:
+      exclude: [cron]
 
----
-kind: pipeline
-type: docker
-name: kaniko-build
-
-platform:
-  os: linux
-  arch: amd64
-
-depends_on:
-- dockerhub-build-trigger
-
-steps:
-- name: build
+- name: kaniko-build
   pull: always
   image: immawanderer/drone-kaniko:efd19c50
   settings:
     dockerfile: Dockerfile
     context: .
+  when:
+    ref:
+    - "refs/heads/feature-**"
+    - "refs/pull/**"
+    - "refs/tags/**"
+    event:
+      exclude: [cron]
+
+- name: kaniko-publish
+  pull: always
+  image: immawanderer/drone-kaniko:efd19c50
+  settings:
+    dockerfile: Dockerfile
+    context: .
+    tags:
+    - latest
+    - linux-amd64
+    - ${DRONE_COMMIT_SHA:0:8}
+    repo: immawanderer/archlinux-cdev
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+  when:
+    ref:
+    - refs/heads/master
+    event:
+      exclude: [pull_request, tag]
+trigger:
+  event: [push, pull_request, cron, tag]
 
 ---
 kind: pipeline
@@ -82,7 +93,7 @@ trigger:
   - failure
 
 depends_on:
-- kaniko-build
+- testing
 
 ---
 kind: pipeline
@@ -119,4 +130,4 @@ trigger:
   - failure
 
 depends_on:
-- kaniko-build
+- testing
