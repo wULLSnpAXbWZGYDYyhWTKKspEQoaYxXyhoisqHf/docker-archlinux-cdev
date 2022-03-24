@@ -22,5 +22,4 @@ RUN pacman --version && \
 	rm -rf /usr/share/doc/*; \
 	rm -rf /usr/share/zoneinfo/*; \
 	rm -rf /usr/share/i18n/*; \
-	find /. -name "*~" -type f -delete; \
 	find /usr/share/terminfo/. ! -name "*xterm*" ! -name "*screen*" ! -name "*screen*" -type f -delete;
