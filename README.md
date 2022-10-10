@@ -1,7 +1,6 @@
 # docker-archlinux-cdev
 
 [![Build Status](https://drone.dotya.ml/api/badges/wanderer/docker-archlinux-cdev/status.svg?ref=refs/heads/master)](https://drone.dotya.ml/wanderer/docker-archlinux-cdev)
-[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/immawanderer/archlinux-cdev)](https://hub.docker.com/r/immawanderer/archlinux-cdev/builds)
 
 This repository provides the Dockerfile to create a Docker image used for light C development (some goodies included).
 
